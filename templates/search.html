@@ -1,0 +1,19 @@
+{%extends "layout.html" %}
+{% block title %} Hello {{nn}}!!! {% endblock %}
+{% block action %}
+<p><h2 style="margin: auto;">Welcome to main Page</h2></p>
+<br>
+<h2>We have such book of your favorite writer</h2>
+{% for i in recomended %}
+    
+        <a href="{{ url_for('book', isbn=i.isbn)}}">
+            <div style="width:18%; background-color: white; display: inline-block; border-radius: 5px; height: 200px"><p>Author:{{i.author}}</p><p>Title:{{i.title}}</p><p>Year:{{i.year}}</p><p>Isbn:{{i.isbn}}</p></div>
+        </a>  
+     
+
+        
+
+      
+    
+        {% endfor %}
+	{% endblock %}

@@ -1,0 +1,9 @@
+{%extends "layout.html" %}
+{% block title %} My_library{% endblock %}
+{% block action %}
+<form action="{{ url_for('login') }}", method="POST"> 
+<div style="margin-left: 10px" class="form-group"><input class="form-control form_correct" type="text" name="usernamelog" placeholder="your username">
+<p class="form"><input class="form-control form_correct" type="password" name="passlog" placeholder="your password"></p>
+<p class="form"><button type="submit" class="btn btn-dark">Submit</button></p>
+<a href="{{ url_for('registration') }}">press here to register</a></div>
+{% endblock %}

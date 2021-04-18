@@ -1,0 +1,80 @@
+<!Doctype html>
+<html><head>  
+ 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles.css') }}"
+  >
+	<title>page</title></head>
+<body>
+  <div id="message">{% with flashh = get_flashed_messages() %}
+    {% if flashh %}
+    <h3>{{ flashh[0] }}</h3>
+    {% endif %}
+    {% endwith %}
+   {% if message %}
+  <h3>{{message}}</h3>{% endif %}
+	<h2>{% block title %}{% endblock%}</h2></div>
+
+	
+
+<!-- NAvbar -->
+  <nav class="navbar navbar-expand-sm bg-dark justify-content-center" id='navigation_bar' style=''>    
+
+    <form class="navbar-form navbar-left" id="search_form" action="{{ url_for('result') }}", method="POST">
+  <div class="input-group">
+    <input type="text" class="form-control" name="wordrequest" placeholder="type isbn, title or author">
+    <div class="input-group-btn">
+      <button class="btn btn-default navbar-btn" type="submit" style="background-color: white">
+        Submit
+      </button>
+    </div>
+  </div>
+</form> 
+  
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="{{url_for('one')}}">Main</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{url_for('my_books')}}">My books</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{url_for('show_all_books')}}">Show all books</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{url_for('add_book')}}">add book</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{{url_for('delete_books')}}">Delete books</a>
+    </li>
+
+{% if current_user.is_authenticated %}
+    <li class="nav-item">
+      <a class="nav-link" href="{{url_for('logout')}}">Log_out</a>
+    </li>
+    {% endif %}
+  </ul>
+
+</nav>
+	
+
+
+
+
+
+  <div id=mainblock>{%block action%}{% endblock %}</div>
+	<div id=additional>{% block additional %}{% endblock %}</div>
+
+<footer class="py-4 bg-dark text-white-50">
+    <div class="container text-center">
+      <small>Copyright &copy; My Lib</small>
+    </div>
+  </footer>  
+</body>
+</html>
+
+
+
+    
+ 

@@ -1,0 +1,63 @@
+body {
+	background-size: cover;
+	background-image: url(books.jpg);
+}
+#mainblock {
+	padding: 30px;
+	background: #FCCF55;
+	margin-top: 0px;
+	margin: auto;
+	height: 100%;
+	min-height: 700px;
+	width: 70%;
+	border-radius: 4px;
+	opacity: 95%;
+	margin-bottom: 300px;
+}
+
+footer {
+	flex-shrink: none;
+	width: 100%;
+	bottom: 0px;
+	position: fixed;
+	margin-left:0px; 
+}
+#search_form {
+	margin-right: 30px;
+}
+
+#navigation_bar {
+	max-width: 70%;
+	margin: auto;
+	margin-bottom:2px;
+	border-radius: 4px;
+}
+#book_form {
+	margin-bottom: 40px;
+}
+#message {
+	background: #FCCF55;
+	align-self: center;
+	width: 300px;
+	margin: auto;
+	text-align: center;
+	margin-bottom: 0px;
+	border-radius: 3px;
+}
+
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none; // Yeah, yeah everybody write about it
+}
+
+input[type='number'],
+input[type="number"]:hover,
+input[type="number"]:focus {
+    appearance: none;
+    -moz-appearance: textfield;
+}
+
+.form_correct {
+	width: 35%;
+}

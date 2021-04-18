@@ -1,0 +1,59 @@
+{%extends "layout.html" %}
+{% block title %} Info about {% endblock %}
+{% block action %}
+ <script type="text/javascript" src="https://www.google.com/books/jsapi.js"></script>
+    <script type="text/javascript">
+      google.books.load();
+
+      function alertNotFound() {
+  alert("could not embed the book!");
+}
+
+
+      function initialize() {
+        var viewer = new google.books.DefaultViewer(document.getElementById('viewerCanvas'));
+        viewer.load('ISBN:{{isbn}}', alertNotFound);
+      }
+
+      google.books.setOnLoadCallback(initialize);
+    </script>           
+       <p>Author:{{bookbook.author}}</p><p>Title:{{bookbook.title}}</p><p>Year:{{bookbook.year}}</p><p>Isbn:{{bookbook.isbn}}</p>
+       {% if status==False %}
+       <form id="take_book" action="{{ url_for('takebook', isbn=bookbook.isbn)}}">
+       
+
+            <button class="btn btn-dark">
+              Take Book
+            </button>
+       </form>
+
+       {% elif status==True %}
+       <form id="give_book" action="{{ url_for('give_book', isbn=bookbook.isbn) }}", method="POST">
+
+            <button class="btn btn-dark">
+              Return to library
+            </button>
+       </form>
+
+       {% else %}
+
+       <p>Book not avaible</p>
+
+
+       {% endif %}
+<form id="book_form" action= "{{ url_for('review', isbn=bookbook.isbn) }}">
+	<div style=><textarea class="form-control" style="width:80%; height: 60px" type="text" name="review" placeholder="tell us few words about this book"></textarea>
+		<p><select name="rate">
+    <option></option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option></select></p>
+	<p><button class="btn btn-dark">left review</button></p></div></form>
+  <p>avg rate: {{rate}}</p>
+  {% for com in reviews %}
+            <div style="width:18%; background-color: white; display: inline-block; border-radius: 5px"><p>User:{{ com.reader }}</p><p>Rate:{{com.rate}}</p><p>{{com.review}}</p></div>
+        {% endfor %}
+<div id="viewerCanvas" style="width: 600px; height: 500px"></div>
+{% endblock %}

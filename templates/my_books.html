@@ -1,0 +1,13 @@
+{%extends "layout.html" %}
+{% block title %} Get the result!!! :) {% endblock %}
+{% block action %}
+<form action= "{{ url_for('return_books') }}", method="POST">
+    <ul>
+        {% for book in book_list %}
+            <li><input type="checkbox" name="check" value={{book.isbn}}><a href="{{ url_for('book', isbn=book.isbn)}}"><span style="font-weight: bold">{{ book.title }}</span>  ----- written by 
+            	<span style="font-weight: bold">  ------- {{book.author}}</span></a></input></li>
+        {% endfor %}
+    </ul>
+    <button class="btn btn-dark">Return book to library</button>
+</form>
+    {% endblock %}
